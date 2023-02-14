@@ -27,10 +27,10 @@ describe('server.js', () => {
     }, 750)
     it('[2] kriterler geçersizse doğru mesaj ve durum kodu', async () => {
       let res = await request(server).post('/api/auth/login').send({ username: 'bobsy', password: '1234' })
-      expect(res.body.message).toMatch(/ersiz kriter/i)
+      expect(res.body.message).toMatch(/Geçersiz kriter/i)
       expect(res.status).toBe(401)
       res = await request(server).post('/api/auth/login').send({ username: 'bob', password: '12345' })
-      expect(res.body.message).toMatch(/ersiz kriter/i)
+      expect(res.body.message).toMatch(/Geçersiz kriter/i)
       expect(res.status).toBe(401)
     }, 750)
     it('[3] doğru token ve { subject, username, role_name, exp, iat } ile yanıtlıyor', async () => {

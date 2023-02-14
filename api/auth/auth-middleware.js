@@ -10,7 +10,7 @@ const sinirli = (req, res, next) => {
         if (err) {
           next({
             status: 401,
-            message: "Token geçersizdir",
+            message: "token geçersizdir",
           });
         } else {
           req.decodedToken = decodedToken;
@@ -20,7 +20,7 @@ const sinirli = (req, res, next) => {
     } else {
       next({
         status: 401,
-        message: "Token gereklidir",
+        message: "token gereklidir",
       });
     }
   } catch (err) {

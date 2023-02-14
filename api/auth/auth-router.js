@@ -71,11 +71,11 @@ router.post("/login", usernameVarmi, (req, res, next) => {
         token: jwtToken,
         message: `${req.user.username} geri geldi!`,
       });
-      
+
     } else {
       next({
         status: 401,
-        message: "Geçersiz bilgiler",
+        message: "Geçersiz kriter",
       });
     }
   } catch (err) {
