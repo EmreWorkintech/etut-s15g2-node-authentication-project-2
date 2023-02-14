@@ -18,6 +18,7 @@ function bul() {
       }
     ]
    */
+  return db("users")
 }
 
 function goreBul(filtre) {
@@ -34,6 +35,7 @@ function goreBul(filtre) {
       }
     ]
    */
+    return db("users")
 }
 
 function idyeGoreBul(user_id) {
@@ -47,6 +49,7 @@ function idyeGoreBul(user_id) {
       "role_name": "instructor"
     }
    */
+    return db("users")
 }
 
 /**

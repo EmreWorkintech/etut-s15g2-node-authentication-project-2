@@ -14,6 +14,13 @@ router.post("/register", rolAdiGecerlimi, (req, res, next) => {
       "role_name": "angel"
     }
    */
+    try {
+      res.status(200).json({
+        message:"register çalışıyor"
+  })
+    } catch(err) {
+      next(err)
+    }
 });
 
 
@@ -36,6 +43,13 @@ router.post("/login", usernameVarmi, (req, res, next) => {
       "role_name": "admin" // giriş yapan kulanıcının role adı
     }
    */
+    try {
+      res.status(200).json({
+        message:"login çalışıyor"
+  })
+    } catch(err) {
+      next(err)
+    }
 });
 
 module.exports = router;

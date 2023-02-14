@@ -16,6 +16,7 @@ const sinirli = (req, res, next) => {
 
     Alt akıştaki middlewarelar için hayatı kolaylaştırmak için kodu çözülmüş tokeni req nesnesine koyun!
   */
+ next()
 }
 
 const sadece = role_name => (req, res, next) => {
@@ -30,6 +31,7 @@ const sadece = role_name => (req, res, next) => {
 
     Tekrar authorize etmekten kaçınmak için kodu çözülmüş tokeni req nesnesinden çekin!
   */
+    next()
 }
 
 
@@ -41,6 +43,7 @@ const usernameVarmi = (req, res, next) => {
       "message": "Geçersiz kriter"
     }
   */
+    next()
 }
 
 
@@ -63,6 +66,7 @@ const rolAdiGecerlimi = (req, res, next) => {
       "message": "rol adı 32 karakterden fazla olamaz"
     }
   */
+    next()
 }
 
 module.exports = {
