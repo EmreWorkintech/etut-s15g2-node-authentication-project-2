@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const { usernameVarmi, rolAdiGecerlimi } = require('./auth-middleware');
 const { JWT_SECRET } = require("../secrets"); // bu secret'ı kullanın!
+const UserModel = require("../users/users-model");
+const bcrypt = require("bcryptjs")
 
-router.post("/register", rolAdiGecerlimi, (req, res, next) => {
+router.post("/register", rolAdiGecerlimi, async (req, res, next) => {
   /**
     [POST] /api/auth/register { "username": "anna", "password": "1234", "role_name": "angel" }
 
@@ -14,13 +16,17 @@ router.post("/register", rolAdiGecerlimi, (req, res, next) => {
       "role_name": "angel"
     }
    */
-    try {
-      res.status(200).json({
-        message:"register çalışıyor"
-  })
-    } catch(err) {
-      next(err)
-    }
+  try {
+    const {role_name} = req;
+    const { username, password } = req.body;
+    const hash = bcrypt.hashSync(password, 10);
+    const newUser = await UserModel.ekle({ role_name, username, password:hash })
+    res.status(201).json(
+      newUser
+    )
+  } catch (err) {
+    next(err)
+  }
 });
 
 
@@ -43,13 +49,13 @@ router.post("/login", usernameVarmi, (req, res, next) => {
       "role_name": "admin" // giriş yapan kulanıcının role adı
     }
    */
-    try {
-      res.status(200).json({
-        message:"login çalışıyor"
-  })
-    } catch(err) {
-      next(err)
-    }
+  try {
+    res.status(200).json({
+      message: "login çalışıyor"
+    })
+  } catch (err) {
+    next(err)
+  }
 });
 
 module.exports = router;
